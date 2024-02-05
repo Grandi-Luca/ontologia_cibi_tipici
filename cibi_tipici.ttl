@@ -7,11 +7,42 @@
 @base <http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/> .
 
 <http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici> rdf:type owl:Ontology ;
-                                                                owl:imports <http://www.ontologydesignpatterns.org/cp/owl/list.owl> .
+                                                                owl:imports <http://www.ontologydesignpatterns.org/cp/owl/list.owl> ;
+                                                                <http://purl.org/dc/elements/1.1/creator> "Luca Grandi" ;
+                                                                <http://purl.org/dc/elements/1.1/date> "2024-02-05T00:00:00"^^xsd:dateTime ;
+                                                                <http://purl.org/dc/elements/1.1/description> "L'ontologia riguarda i \"Cibi Locali\" e mira a rappresentare in modo strutturato e semantico le informazioni relative ai cibi, alle ricette e alle caratteristiche culinarie di specifiche zone geografiche."@it ;
+                                                                <http://purl.org/dc/elements/1.1/title> "Ontologia su cibi tipici locali"@it ;
+                                                                <http://purl.org/vocab/vann/preferredNamespacePrefix> "cibi_tipici"@it ;
+                                                                <http://purl.org/vocab/vann/preferredNamespaceURI> "http://www.semanticweb.org/cibi_tipici" ;
+                                                                rdfs:label "CibiTipici"@it .
 
 #################################################################
 #    Annotation properties
 #################################################################
+
+###  http://purl.org/dc/elements/1.1/creator
+<http://purl.org/dc/elements/1.1/creator> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/date
+<http://purl.org/dc/elements/1.1/date> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/description
+<http://purl.org/dc/elements/1.1/description> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/elements/1.1/title
+<http://purl.org/dc/elements/1.1/title> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespacePrefix
+<http://purl.org/vocab/vann/preferredNamespacePrefix> rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/vocab/vann/preferredNamespaceURI
+<http://purl.org/vocab/vann/preferredNamespaceURI> rdf:type owl:AnnotationProperty .
+
 
 ###  http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem
 <http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem> rdf:type owl:AnnotationProperty .
@@ -170,7 +201,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/haQuantitàIngrediente
 :haQuantitàIngrediente rdf:type owl:DatatypeProperty ;
                        rdfs:domain <https://purl.org/ontology/fo/Ingredient> ;
-                       rdfs:comment "Numero della quantità di ingrediente necessaria per la preparazione di una ricetta. L'unità di misura è il grammo"@it ;
+                       rdfs:comment "Valore della quantità di ingrediente necessario per la preparazione di una ricetta."@it ;
                        rdfs:label "haQuantitàIngrediente"@it .
 
 
@@ -818,9 +849,9 @@
                                                                                     :Step4OssolanoDOP ,
                                                                                     :Step5OssolanoDOP ,
                                                                                     :Step6OssolanoDOP ;
-                     <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#size> 6 ;
                      <http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasFirstItem> :Step1OssolanoDOP ;
                      <http://www.ontologydesignpatterns.org/cp/owl/list.owl#hasLastItem> :Step6OssolanoDOP ;
+                     <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#size> 6 ;
                      rdfs:comment "Processo di produzione del formaggio ossolano dop"@it ;
                      rdfs:label "ProcessoOssolanoDOP"@it .
 
@@ -917,16 +948,16 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Step1RisottoOssolano
 :Step1RisottoOssolano rdf:type owl:NamedIndividual ;
-                      :haDescrizione "Iniziate preparando la riduzione facendo un soffritto con lo scalogno, l’olio extravergine d'oliva e il timo (mettete solo la punta perché la base del rametto è più amara). In seguito aggiungete il vino Prünent, il sale e lo zucchero e portate a bollore." ;
                       <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyPrecedes> :Step2RisottoOssolano ;
+                      :haDescrizione "Iniziate preparando la riduzione facendo un soffritto con lo scalogno, l’olio extravergine d'oliva e il timo (mettete solo la punta perché la base del rametto è più amara). In seguito aggiungete il vino Prünent, il sale e lo zucchero e portate a bollore." ;
                       rdfs:comment "Individuo che rappresenta lo step n. 1 per realizzare il risotto al fromaggio ossolano dop"@it ;
                       rdfs:label "Step1RisottoOssolano"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Step2OssolanoDOP
 :Step2OssolanoDOP rdf:type owl:NamedIndividual ;
-                  :haDescrizione "Appena dopo la mungitura il latte viene lavoratocrudo o pastorizzato, aggiungendo caglio a una temperatura compresa tra 36 °C e 39 °C" ;
                   <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> :Step1OssolanoDOP ;
+                  :haDescrizione "Appena dopo la mungitura il latte viene lavoratocrudo o pastorizzato, aggiungendo caglio a una temperatura compresa tra 36 °C e 39 °C" ;
                   rdfs:comment "Individuo che rappresenta lo step n. 2 per realizzare il fromaggio ossolano dop"@it ;
                   rdfs:label "Step2OssolanoDOP"@it .
 
@@ -940,57 +971,57 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Step3OssolanoDOP
 :Step3OssolanoDOP rdf:type owl:NamedIndividual ;
+                  <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> :Step3OssolanoDOP ;
                   :usaTecnica :CotturaSottoSiero ;
                   :haDescrizione "La cagliata viene rotta per circa dieci minuti, fino a ottenere dei granuli grandi come chicchi di mais. A questo punto si avvia la cottura sotto siero, o semicottura, a una temperatura compresa tra 42 e 45 gradi." ;
-                  <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> :Step3OssolanoDOP ;
                   rdfs:comment "Individuo che rappresenta lo step n. 3 per realizzare il fromaggio ossolano dop"@it ;
                   rdfs:label "Step3OssolanoDOP"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Step3RisottoOssolano
 :Step3RisottoOssolano rdf:type owl:NamedIndividual ;
-                      :haDescrizione "Ora potete procedere con la preparazione del risotto. Fate un soffritto con olio e cipolla, aggiungete il riso, tostandolo bene, sfumate con il vino bianco e cuocete con il brodo per almeno 15 minuti. Ricordatevi di aggiungere un mestolo di brodo ogni volta che il riso vi sembrerà asciutto." ;
                       <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> :Step2RisottoOssolano ;
+                      :haDescrizione "Ora potete procedere con la preparazione del risotto. Fate un soffritto con olio e cipolla, aggiungete il riso, tostandolo bene, sfumate con il vino bianco e cuocete con il brodo per almeno 15 minuti. Ricordatevi di aggiungere un mestolo di brodo ogni volta che il riso vi sembrerà asciutto." ;
                       rdfs:comment "Individuo che rappresenta lo step n. 3 per realizzare il risotto al fromaggio ossolano dop" ;
                       rdfs:label "Step3RisottoOssolano"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Step4OssolanoDOP
 :Step4OssolanoDOP rdf:type owl:NamedIndividual ;
-                  :haDescrizione "Terminato il riscaldamento, si estrae la cagliata, che viene successivamente pressata per espellere il siero residuo e per omogeneizzare la massa caseosa." ;
                   <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> :Step3OssolanoDOP ;
+                  :haDescrizione "Terminato il riscaldamento, si estrae la cagliata, che viene successivamente pressata per espellere il siero residuo e per omogeneizzare la massa caseosa." ;
                   rdfs:comment "Individuo che rappresenta lo step n. 4 per realizzare il fromaggio ossolano dop"@it ;
                   rdfs:label "Step4OssolanoDOP"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Step4RisottoOssolano
 :Step4RisottoOssolano rdf:type owl:NamedIndividual ;
-                      :haDescrizione "Al termine della cottura mantecate con il burro e l’Ossolano DOP grattuggiato. Per non rovinare il chicco di riso vi consigliamo di non girarlo con un mestolo, bensì facendo movimenti con la casseruola creando una \"onda\"." ;
                       <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> :Step3RisottoOssolano ;
+                      :haDescrizione "Al termine della cottura mantecate con il burro e l’Ossolano DOP grattuggiato. Per non rovinare il chicco di riso vi consigliamo di non girarlo con un mestolo, bensì facendo movimenti con la casseruola creando una \"onda\"." ;
                       rdfs:comment "Individuo che rappresenta lo step n. 4 per realizzare il risotto al fromaggio ossolano dop"@it ;
                       rdfs:label "Step4RisottoOssolano"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Step5OssolanoDOP
 :Step5OssolanoDOP rdf:type owl:NamedIndividual ;
-                  :haDescrizione "Fase di marchiatura attraverso l’utilizzo di fasce marchianti." ;
                   <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> :Step4OssolanoDOP ;
+                  :haDescrizione "Fase di marchiatura attraverso l’utilizzo di fasce marchianti." ;
                   rdfs:comment "Individuo che rappresenta lo step n. 5 per realizzare il fromaggio ossolano dop"@it ;
                   rdfs:label "Step5OssolanoDOP"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Step5RisottoOssolano
 :Step5RisottoOssolano rdf:type owl:NamedIndividual ;
-                      :haDescrizione "Infine impiattate e versate un po’ della riduzione preparata cercando di creare una spirale. Il vostro risotto all'Ossolano è pronto per essere servito." ;
                       <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> :Step4RisottoOssolano ;
+                      :haDescrizione "Infine impiattate e versate un po’ della riduzione preparata cercando di creare una spirale. Il vostro risotto all'Ossolano è pronto per essere servito." ;
                       rdfs:comment "Individuo che rappresenta lo step n. 5 per realizzare il risotto al fromaggio ossolano dop"@it ;
                       rdfs:label "Step5RisottoOssolano"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Step6OssolanoDOP
 :Step6OssolanoDOP rdf:type owl:NamedIndividual ;
-                  :haDescrizione "Dopo la salatura, che può essere effettuata a secco o in salamoia, le forme vengono conservate in idonei locali di stagionatura alla temperatura di 5-14°C con umidità relativa del 75-90%, per un periodo minimo di 60 giorni." ;
                   <http://www.ontologydesignpatterns.org/cp/owl/sequence.owl#directlyFollows> :Step5OssolanoDOP ;
+                  :haDescrizione "Dopo la salatura, che può essere effettuata a secco o in salamoia, le forme vengono conservate in idonei locali di stagionatura alla temperatura di 5-14°C con umidità relativa del 75-90%, per un periodo minimo di 60 giorni." ;
                   rdfs:comment "Individuo che rappresenta lo step n. 6 per realizzare il fromaggio ossolano dop"@it ;
                   rdfs:label "Step6OssolanoDOP"@it .
 
