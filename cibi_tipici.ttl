@@ -72,31 +72,82 @@
              rdfs:label "appartieneA"@it .
 
 
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/areaHaCiboTipico
+:areaHaCiboTipico rdf:type owl:ObjectProperty ;
+                  owl:inverseOf :ciboAppartieneAdArea ;
+                  rdfs:domain :AreaGeografica ;
+                  rdfs:range :CiboTipico ;
+                  rdfs:comment "Relazione che associa ad un'area geografica un cibo tipico"@it ;
+                  rdfs:label "areaHaCiboTipico"@it .
+
+
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/ciboAppartieneAdArea
+:ciboAppartieneAdArea rdf:type owl:ObjectProperty ;
+                      rdfs:domain :CiboTipico ;
+                      rdfs:range :AreaGeografica ;
+                      rdfs:comment "Proprietà che associa ad un cibo tipico l'area geografica, secondo la tipologia di cucina a cui appartiene il cibo"@it ;
+                      rdfs:label "ciboAppartieneAdArea"@it .
+
+
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/ciboHaIngrediente
 :ciboHaIngrediente rdf:type owl:ObjectProperty ;
-                   rdfs:domain :CiboTIpico ;
+                   rdfs:domain :CiboTipico ;
                    rdfs:range :Ingrediente ;
                    owl:propertyChainAxiom ( :haRicetta
                                             :usaListaIngredienti
                                             <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem>
                                             :contieneIngrediente
                                           ) ;
-                   rdfs:comment "proprietà che associa ad un cibo tipico gli ingredienti contenuti nella lista degli ingredienti"@it ;
+                   rdfs:comment "Proprietà che associa ad un cibo tipico gli ingredienti contenuti nella lista degli ingredienti"@it ;
                    rdfs:label "ciboHaIngrediente"@it .
+
+
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/ciboUtilizzaStep
+:ciboUtilizzaStep rdf:type owl:ObjectProperty ;
+                  rdfs:domain :CiboTipico ;
+                  rdfs:range :StepPreparazione ;
+                  owl:propertyChainAxiom ( :haRicetta
+                                           :usaProcesso
+                                           <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem>
+                                         ) ;
+                  rdfs:comment "Proprietà che associa ad un cibo tipico gli step necessari per realizzarlo"@it ;
+                  rdfs:label "ciboUtilizzaStep"@it .
+
+
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/compatibileConIntolleranza
+:compatibileConIntolleranza rdf:type owl:ObjectProperty ;
+                            rdfs:domain :CiboTipico ;
+                            rdfs:range :Intolleranza ;
+                            rdfs:comment "Proprietà che indica che un determinato cibo tipico è compatibile con un certo tipo di intolleranza."@it ;
+                            rdfs:label "compatibileConIntolleranza"@it .
+
+
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/comprendeAreaGeografica
+:comprendeAreaGeografica rdf:type owl:ObjectProperty ;
+                         rdfs:domain :AreaGeografica ;
+                         rdfs:range :AreaGeografica .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/contieneIngrediente
 :contieneIngrediente rdf:type owl:ObjectProperty ;
                      rdfs:subPropertyOf <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#itemContent> ;
-                     rdfs:domain <https://purl.org/ontology/fo/Ingredient> ;
+                     rdfs:domain :ItemIngrediente ;
                      rdfs:range :Ingrediente ;
                      rdfs:comment "Proprietà che funge da collegamento alla risorsa effettiva a cui fa riferimento l’elemento"@it ;
                      rdfs:label "contieneIngrediente"@it .
 
 
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/diStagione
+:diStagione rdf:type owl:ObjectProperty ;
+            rdfs:domain :CiboTipico ;
+            rdfs:range :Stagionalita ;
+            rdfs:comment "Proprietà che specifica a quale stagione appartiene un cibo tipico"@it ;
+            rdfs:label "diStagione"@it .
+
+
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/haCertificazione
 :haCertificazione rdf:type owl:ObjectProperty ;
-                  rdfs:domain :CiboTIpico ;
+                  rdfs:domain :CiboTipico ;
                   rdfs:range :Certificazione ;
                   rdfs:comment "Proprietà che associa una certificazione ad un cibo tipico"@it ;
                   rdfs:label "haCertificazione"@it .
@@ -105,7 +156,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/haRicetta
 :haRicetta rdf:type owl:ObjectProperty ,
                     owl:FunctionalProperty ;
-           rdfs:domain :CiboTIpico ;
+           rdfs:domain :CiboTipico ;
            rdfs:range :Ricetta ;
            rdfs:comment "Proprietà che associa ad un cibo locale una ricetta"@it ;
            rdfs:label "haRicetta"@it .
@@ -123,14 +174,14 @@
 :produce rdf:type owl:ObjectProperty ;
          owl:inverseOf :vieneProdottoDa ;
          rdfs:domain :Produttore ;
-         rdfs:range :CiboTIpico ;
+         rdfs:range :CiboTipico ;
          rdfs:comment "Proprietà che associa i cibi tipici alla persona che li produce"@it ;
          rdfs:label "produce"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/propostoInOccasione
 :propostoInOccasione rdf:type owl:ObjectProperty ;
-                     rdfs:domain :CiboTIpico ;
+                     rdfs:domain :CiboTipico ;
                      rdfs:range :Occasione ;
                      rdfs:comment "Proprietà che associa le occasioni in cui è consigliato consumare un cibo tipico"@it ;
                      rdfs:label "propostoInOccasione"@it .
@@ -138,7 +189,7 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/tipicoDiCucina
 :tipicoDiCucina rdf:type owl:ObjectProperty ;
-                rdfs:domain :CiboTIpico ;
+                rdfs:domain :CiboTipico ;
                 rdfs:range :TipologiaCucina ;
                 rdfs:comment "Proprietà che associa un cibo tipico ad una tipologia di cucina"@it ;
                 rdfs:label "tipicoDiCucina"@it .
@@ -154,7 +205,8 @@
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/usaProcesso
-:usaProcesso rdf:type owl:ObjectProperty ;
+:usaProcesso rdf:type owl:ObjectProperty ,
+                      owl:FunctionalProperty ;
              rdfs:domain :Ricetta ;
              rdfs:range :ProcessoDiPreparazione ;
              rdfs:comment "Proprietà che associa alla ricetta il prorpio insieme di step per la preparazione"@it ;
@@ -172,18 +224,10 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/vieneProdottoDa
 :vieneProdottoDa rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf owl:topObjectProperty ;
-                 rdfs:domain :CiboTIpico ;
+                 rdfs:domain :CiboTipico ;
                  rdfs:range :Produttore ;
                  rdfs:comment "Proprietà che associa i produttori ad uno specifico cibo tipico"@it ;
                  rdfs:label "vieneProdottoDa"@it .
-
-
-###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/èDiStagione
-:èDiStagione rdf:type owl:ObjectProperty ;
-             rdfs:domain :CiboTIpico ;
-             rdfs:range :Stagionalità ;
-             rdfs:comment "Proprietà che specifica a quale stagione appartiene un cibo tipico"@it ;
-             rdfs:label "èDiStagione"@it .
 
 
 #################################################################
@@ -192,22 +236,31 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/haDescrizione
 :haDescrizione rdf:type owl:DatatypeProperty ;
-               rdfs:domain :StepPreparazione ;
+               rdfs:domain owl:Thing ;
                rdfs:range xsd:string ;
-               rdfs:comment "Descrizione dettagliata di uno step di preparazione"@it ;
+               rdfs:comment "Descrizione dettagliata di un individuo"@it ;
                rdfs:label "haDescrizione"@it .
 
 
-###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/haQuantitàIngrediente
-:haQuantitàIngrediente rdf:type owl:DatatypeProperty ;
-                       rdfs:domain <https://purl.org/ontology/fo/Ingredient> ;
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/haNome
+:haNome rdf:type owl:DatatypeProperty ;
+        rdfs:domain owl:Thing ;
+        rdfs:range xsd:string ;
+        rdfs:comment "Nome di un generico ndividuoi"@it ;
+        rdfs:label "haNome"@it .
+
+
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/haQuantitaIngrediente
+:haQuantitaIngrediente rdf:type owl:DatatypeProperty ;
+                       rdfs:domain <https://purl.org/ontology/fo#Ingredient> ;
+                       rdfs:range xsd:string ;
                        rdfs:comment "Valore della quantità di ingrediente necessario per la preparazione di una ricetta."@it ;
-                       rdfs:label "haQuantitàIngrediente"@it .
+                       rdfs:label "haQuantitaIngrediente"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/haStoria
 :haStoria rdf:type owl:DatatypeProperty ;
-          rdfs:domain :CiboTIpico ;
+          rdfs:domain :CiboTipico ;
           rdfs:range xsd:string ;
           rdfs:comment "Descrizione della storia di un cibo locale"@it ;
           rdfs:label "haStoria"@it .
@@ -292,8 +345,11 @@
                 rdfs:label "Certificazione"@it .
 
 
-###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/CiboTIpico
-:CiboTIpico rdf:type owl:Class ;
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/CiboTipico
+:CiboTipico rdf:type owl:Class ;
+            owl:disjointUnionOf ( :PiattoLocale
+                                  :ProdottoLocale
+                                ) ;
             rdfs:comment "Classe principale che rappresenta i cibi prodotti localmente."@it ;
             rdfs:label "CiboTipico"@it .
 
@@ -332,9 +388,15 @@
              rdfs:label "Ingrediente"@it .
 
 
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Intolleranza
+:Intolleranza rdf:type owl:Class ;
+              rdfs:comment "Classe che rappresenta le intolleranze alimentari"@it ;
+              rdfs:label "Intolleranza"@it .
+
+
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/ItemIngrediente
 :ItemIngrediente rdf:type owl:Class ;
-                 owl:equivalentClass <https://purl.org/ontology/fo/Ingredient> ;
+                 owl:equivalentClass <https://purl.org/ontology/fo#Ingredient> ;
                  rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item> ;
                  rdfs:comment "Combinazione di una quantità e di un alimento, che indica la quantità di qualcosa che dovrebbe essere utilizzato nella ricetta."@it ;
                  rdfs:label "ItemIngrediente"@it .
@@ -364,7 +426,7 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Occasione
 :Occasione rdf:type owl:Class ;
-           owl:equivalentClass <https://purl.org/ontology/fo/Occasion> ;
+           owl:equivalentClass <https://purl.org/ontology/fo#Occasion> ;
            rdfs:comment "Occasione nel quale un cibo tipico viene proposto. E.g. Sagra, Festa di natale, Pasqua, Capodanno, evento gastronomico, festa di compleanno ecc."@it ;
            rdfs:label "Occasione"@it .
 
@@ -378,15 +440,7 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/PiattoLocale
 :PiattoLocale rdf:type owl:Class ;
-              owl:equivalentClass [ owl:intersectionOf ( :CiboTIpico
-                                                         [ rdf:type owl:Restriction ;
-                                                           owl:onProperty :haTipologia ;
-                                                           owl:someValuesFrom :TipologiaPiatto
-                                                         ]
-                                                       ) ;
-                                    rdf:type owl:Class
-                                  ] ;
-              rdfs:subClassOf :CiboTIpico ;
+              rdfs:subClassOf :CiboTipico ;
               rdfs:comment "Cibo tipico che viene servito come un valore appartenente all'enumerazione TipologiaPiatto"@it ;
               rdfs:label "PiattoLocale"@it .
 
@@ -415,6 +469,14 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/ProcessoDiPreparazione
 :ProcessoDiPreparazione rdf:type owl:Class ;
+                        owl:equivalentClass [ owl:intersectionOf ( <http://www.ontologydesignpatterns.org/cp/owl/list.owl#List>
+                                                                   [ rdf:type owl:Restriction ;
+                                                                     owl:onProperty <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem> ;
+                                                                     owl:someValuesFrom <http://www.ontologydesignpatterns.org/cp/owl/list.owl#ListItem>
+                                                                   ]
+                                                                 ) ;
+                                              rdf:type owl:Class
+                                            ] ;
                         rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/list.owl#List> ;
                         rdfs:comment "Insieme ordinato di Step attraverso i quali è possibile realizzare una ricetta"@it ;
                         rdfs:label "ProcessoDiPreparazione"@it .
@@ -436,6 +498,16 @@
                              rdfs:label "ProcessoDiPreparazioneLungo"@it .
 
 
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/ProcessoDiPreparazioneVeloce
+:ProcessoDiPreparazioneVeloce rdf:type owl:Class ;
+                              rdfs:subClassOf :ProcessoDiPreparazione .
+
+
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/ProdottoLocale
+:ProdottoLocale rdf:type owl:Class ;
+                rdfs:subClassOf :CiboTipico .
+
+
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Produttore
 :Produttore rdf:type owl:Class ;
             rdfs:comment "Persona che produce un cibo tipico"@it ;
@@ -455,8 +527,8 @@
             rdfs:label "Selvaggina"@it .
 
 
-###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Stagionalità
-:Stagionalità rdf:type owl:Class ;
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Stagionalita
+:Stagionalita rdf:type owl:Class ;
               owl:equivalentClass [ rdf:type owl:Class ;
                                     owl:oneOf ( :AnnoIntero
                                                 :Autunno
@@ -466,7 +538,7 @@
                                               )
                                   ] ;
               rdfs:comment "Rappresenta la stagionalità dei cibi tipici"@it ;
-              rdfs:label "Stagionalità"@it .
+              rdfs:label "Stagionalita"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/StepPreparazione
@@ -501,15 +573,15 @@
                  rdfs:label "TipologiaPiatto"@it .
 
 
-###  https://purl.org/ontology/fo/Ingredient
-<https://purl.org/ontology/fo/Ingredient> rdf:type owl:Class ;
+###  https://purl.org/ontology/fo#Ingredient
+<https://purl.org/ontology/fo#Ingredient> rdf:type owl:Class ;
                                           rdfs:subClassOf <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#Item> ;
                                           rdfs:comment "An Ingredient is the combination of a quantity and a food, giving the amount of something that should be used in the recipe."@en ;
                                           rdfs:label "Ingredient"@en .
 
 
-###  https://purl.org/ontology/fo/Occasion
-<https://purl.org/ontology/fo/Occasion> rdf:type owl:Class ;
+###  https://purl.org/ontology/fo#Occasion
+<https://purl.org/ontology/fo#Occasion> rdf:type owl:Class ;
                                         rdfs:comment "An Occasion is a recognised event or type of event that a particular food may be suitable for. An example of a particular occasion might be Chinese New Year, whereas a more general occasion might a birthday."@en ;
                                         rdfs:label "Occasion"@en .
 
@@ -520,7 +592,7 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/AnnoIntero
 :AnnoIntero rdf:type owl:NamedIndividual ,
-                     :Stagionalità ;
+                     :Stagionalita ;
             rdfs:comment "Individuo che appresenta l'intero anno"@it ;
             rdfs:label "AnnoIntero"@it .
 
@@ -534,7 +606,7 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Autunno
 :Autunno rdf:type owl:NamedIndividual ,
-                  :Stagionalità ;
+                  :Stagionalita ;
          rdfs:comment "Indica la stagione autunnale"@it ;
          rdfs:label "Autunno"@it .
 
@@ -565,6 +637,13 @@
                  :Ingrediente ;
         rdfs:comment "Rappresenta l'ingrediente caglio"@it ;
         rdfs:label "Caglio"@it .
+
+
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Celiachia
+:Celiachia rdf:type owl:NamedIndividual ,
+                    :Intolleranza ;
+           rdfs:comment "Individuo che rappresenta l'intolleranza al glutine"@it ;
+           rdfs:label "Celiachia"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Cipolla
@@ -612,7 +691,7 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Estate
 :Estate rdf:type owl:NamedIndividual ,
-                 :Stagionalità ;
+                 :Stagionalita ;
         rdfs:comment "Indica la stagione estiva"@it ;
         rdfs:label "Estate"@it .
 
@@ -642,7 +721,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr10RicettaRisottoOssolano
 :Ingr10RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                               :contieneIngrediente :RamettoTimo ;
-                              :haQuantitàIngrediente 2 ;
+                              :haQuantitaIngrediente "2" ;
                               rdfs:comment "Ingrediente n. 10 della ricetta risotto ossolano dop"@it ;
                               rdfs:label "Ingr10RicettaRisottoOssolano"@it .
 
@@ -650,7 +729,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr11RicettaRisottoOssolano
 :Ingr11RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                               :contieneIngrediente :BottigliaValliOssolanePrunent ;
-                              :haQuantitàIngrediente 0.5 ;
+                              :haQuantitaIngrediente "0.5" ;
                               rdfs:comment "Ingrediente n. 11 della ricetta risotto ossolano dop"@it ;
                               rdfs:label "Ingr11RicettaRisottoOssolano"@it .
 
@@ -658,7 +737,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr12RicettaRisottoOssolano
 :Ingr12RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                               :contieneIngrediente :Zucchero ;
-                              :haQuantitàIngrediente "1 cucchiaino" ;
+                              :haQuantitaIngrediente "1 cucchiaino" ;
                               rdfs:comment "Ingrediente n. 12 della ricetta risotto ossolano dop"@it ;
                               rdfs:label "Ingr12RicettaRisottoOssolano"@it .
 
@@ -666,7 +745,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr13RicettaRisottoOssolano
 :Ingr13RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                               :contieneIngrediente :FecolaDiPatate ;
-                              :haQuantitàIngrediente "2 cucchiaini" ;
+                              :haQuantitaIngrediente "2 cucchiaini" ;
                               rdfs:comment "Ingrediente n. 13 della ricetta risotto ossolano dop"@it ;
                               rdfs:label "Ingr13RicettaRisottoOssolano"@it .
 
@@ -682,7 +761,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr1RicettaRisottoOssolano
 :Ingr1RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                              :contieneIngrediente :RisoCarnaroli ;
-                             :haQuantitàIngrediente "280g" ;
+                             :haQuantitaIngrediente "280g" ;
                              rdfs:comment "Ingrediente n. 1 della ricetta risotto ossolano dop"@it ;
                              rdfs:label "Ingr1RicettaRisottoOssolano"@it .
 
@@ -697,7 +776,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr2RicettaRisottoOssolano
 :Ingr2RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                              :contieneIngrediente :Cipolla ;
-                             :haQuantitàIngrediente 1 ;
+                             :haQuantitaIngrediente "1" ;
                              rdfs:comment "Ingrediente n. 2 della ricetta risotto ossolano dop"@it ;
                              rdfs:label "Ingr2RicettaRisottoOssolano"@it .
 
@@ -705,7 +784,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr3RicettaRisottoOssolano
 :Ingr3RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                              :contieneIngrediente :OlioEV ;
-                             :haQuantitàIngrediente "90g" ;
+                             :haQuantitaIngrediente "90g" ;
                              rdfs:comment "Ingrediente n. 3 della ricetta risotto ossolano dop"@it ;
                              rdfs:label "Ingr3RicettaRisottoOssolano"@it .
 
@@ -713,7 +792,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr4RicettaRisottoOssolano
 :Ingr4RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                              :contieneIngrediente :OssolanoDOP ;
-                             :haQuantitàIngrediente "120g" ;
+                             :haQuantitaIngrediente "120g" ;
                              rdfs:comment "Ingrediente n. 4 della ricetta risotto ossolano dop"@it ;
                              rdfs:label "Ingr4RicettaRisottoOssolano"@it .
 
@@ -721,7 +800,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr5RicettaRisottoOssolano
 :Ingr5RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                              :contieneIngrediente :Burro ;
-                             :haQuantitàIngrediente "20g" ;
+                             :haQuantitaIngrediente "20g" ;
                              rdfs:comment "Ingrediente n. 5 della ricetta risotto ossolano dop"@it ;
                              rdfs:label "Ingr5RicettaRisottoOssolano"@it .
 
@@ -729,7 +808,7 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr6RicettaRisottoOssolano
 :Ingr6RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                              :contieneIngrediente :VinoBianco ;
-                             :haQuantitàIngrediente "0.5 bicchiere" ;
+                             :haQuantitaIngrediente "0.5 bicchiere" ;
                              rdfs:comment "Ingrediente n. 6 della ricetta risotto ossolano dop"@it ;
                              rdfs:label "Ingr6RicettaRisottoOssolano"@it .
 
@@ -751,14 +830,14 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Ingr9RicettaRisottoOssolano
 :Ingr9RicettaRisottoOssolano rdf:type owl:NamedIndividual ;
                              :contieneIngrediente :Sgalogno ;
-                             :haQuantitàIngrediente 1 ;
+                             :haQuantitaIngrediente "1" ;
                              rdfs:comment "Ingrediente n. 9 della ricetta risotto ossolano dop"@it ;
                              rdfs:label "Ingr9RicettaRisottoOssolano"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Inverno
 :Inverno rdf:type owl:NamedIndividual ,
-                  :Stagionalità ;
+                  :Stagionalita ;
          rdfs:comment "Indica la stagione invernale"@it ;
          rdfs:label "Inverno"@it .
 
@@ -773,7 +852,8 @@
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/ListaIngrOssolanoDOP
 :ListaIngrOssolanoDOP rdf:type owl:NamedIndividual ,
                                :ListaIngredienti ;
-                      <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem> :Ingr1RicettaOssolano ;
+                      <http://www.ontologydesignpatterns.org/cp/owl/bag.owl#hasItem> :Ingr1RicettaOssolano ,
+                                                                                     :Ingr2RicettaOssolano ;
                       rdfs:comment "Individuo che rappresenta l'insieme degli ingredienti necessari per realizzare il formaggio ossolano dop"@it ;
                       rdfs:label "ListaIngrOssolanoDOP"@it .
 
@@ -798,6 +878,13 @@
                           rdfs:label "ListaIngrRisottoOssolano"@it .
 
 
+###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Napoli
+:Napoli rdf:type owl:NamedIndividual ,
+                 :AreaGeografica ;
+        rdfs:comment "Individuo che rappresenta la città di Napoli"@it ;
+        rdfs:label "Napoli"@it .
+
+
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/OlioEV
 :OlioEV rdf:type owl:NamedIndividual ,
                  :Ingrediente ;
@@ -807,14 +894,22 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/OssolanoDOP
 :OssolanoDOP rdf:type owl:NamedIndividual ,
-                      [ owl:intersectionOf ( :CiboTIpico
+                      [ owl:intersectionOf ( :CiboTipico
                                              :Latticino
                                            ) ;
                         rdf:type owl:Class
                       ] ;
+             :compatibileConIntolleranza :Celiachia ;
              :haCertificazione :DOP ;
+             :haRicetta :RicettaOssolanoDOP ;
              :propostoInOccasione :EventoEnogastronomico ;
              :tipicoDiCucina :CucinaPiemontese ;
+             :haNome "Formaggio Ossolano" ;
+             :haStoria """Il formaggio Ossolano è espressione del «saper fare» collettivo degli agricoltori ossolani, risultato di un percorso condiviso di qualificazione.
+
+Il legame del prodotto con la storia e le tradizioni locali ha origine dai rapporti intercorsi tra le popolazioni originarie del luogo e quella dei Walser, che nei secoli giunsero dalla vicina Svizzera e si stabilirono nei territori ossolani, tanto da diventare una delle tre minoranze etniche del Piemonte (oltre ai Francoprovenzali e ai Valdesi).
+
+La popolazione Walser insediatasi nei territori montani ossolani ha sviluppato una tecnica casearia propria, in dipendenza anche delle particolari condizioni climatiche (precipitazioni abbondanti e temperature mai eccessiva­mente elevate), che prevede l'inserimento, nel processo produttivo, della fase di «semicottura», operazione necessaria per permettere un migliore spurgo del siero.""" ;
              rdfs:comment "Individuo che rappresenta il formaggio ossolano DOP"@it ;
              rdfs:label "OssolanoDOP" .
 
@@ -828,7 +923,7 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Primavera
 :Primavera rdf:type owl:NamedIndividual ,
-                    :Stagionalità ;
+                    :Stagionalita ;
            rdfs:comment "Indica la stagione primaverile"@it ;
            rdfs:label "Primavera"@it .
 
@@ -915,7 +1010,9 @@
                     :haRicetta :RicettaRisottoOssolano ;
                     :haTipologia :Primo ;
                     :tipicoDiCucina :CucinaPiemontese ;
-                    rdfs:comment "Individuo che rappresenta il piatto risotto al formaggio ossolano dop"@it .
+                    :haNome "Risotto d'Ossolano DOP" ;
+                    rdfs:comment "Individuo che rappresenta il piatto risotto al formaggio ossolano dop"@it ;
+                    rdfs:label "RisottoOssolanoDOP"@it .
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/Sale

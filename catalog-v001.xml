@@ -4,6 +4,6 @@
     <uri id="Imports Wizard Entry" name="http://w3id.org/daselab/onto/event" uri="file:/Users/lucagrandi/Downloads/event.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="file:/Users/lucagrandi/Downloads/list.owl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1707123463852" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="list.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1707216731187" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="list.owl"/>
     </group>
 </catalog>
