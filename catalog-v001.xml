@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl" uri="sequence.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="list.owl"/>
-    <uri id="Imports Wizard Entry" name="http://w3id.org/daselab/onto/event" uri="file:/Users/lucagrandi/Downloads/event.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="file:/Users/lucagrandi/Downloads/list.owl"/>
+    <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/bag.owl" uri="file:/Users/lucagrandi/Downloads/bag.owl"/>
+    <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="list.owl"/>
+    <uri id="User Entered Import Resolution" name="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl" uri="bag.owl"/>
+    <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl" uri="collectionentity.owl"/>
+    <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/bag.owl" uri="bag.owl"/>
+    <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="list.owl"/>
+    <uri id="User Entered Import Resolution" name="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl" uri="cibi_tipici.ttl"/>
     <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
-        <uri id="Automatically generated entry, Timestamp=1707216731187" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="list.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1718091818809" name="http://www.ontologydesignpatterns.org/cp/owl/bag.owl" uri="bag.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1718091818809" name="http://www.ontologydesignpatterns.org/cp/owl/collectionentity.owl" uri="collectionentity.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1718091818809" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="list.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1718091818809" name="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl" uri="sequence.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1718091818809" name="http://www.ontologydesignpatterns.org/schemas/cpannotationschema.owl" uri="cpannotationschema.owl"/>
     </group>
 </catalog>
