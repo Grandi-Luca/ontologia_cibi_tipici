@@ -7,7 +7,8 @@
 @base <http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/> .
 
 <http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici> rdf:type owl:Ontology ;
-                                                                owl:imports <http://www.ontologydesignpatterns.org/cp/owl/list.owl> ;
+                                                                owl:imports <http://www.ontologydesignpatterns.org/cp/owl/bag.owl> ,
+                                                                            <http://www.ontologydesignpatterns.org/cp/owl/list.owl> ;
                                                                 <http://purl.org/dc/elements/1.1/creator> "Luca Grandi" ;
                                                                 <http://purl.org/dc/elements/1.1/date> "2024-02-05T00:00:00"^^xsd:dateTime ;
                                                                 <http://purl.org/dc/elements/1.1/description> "L'ontologia riguarda i \"Cibi Locali\" e mira a rappresentare in modo strutturato e semantico le informazioni relative ai cibi, alle ricette e alle caratteristiche culinarie di specifiche zone geografiche."@it ;
@@ -171,7 +172,8 @@
 
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/cucinaAppartieneA
-:cucinaAppartieneA rdf:type owl:ObjectProperty ;
+:cucinaAppartieneA rdf:type owl:ObjectProperty ,
+                            owl:FunctionalProperty ;
                    rdfs:domain :Cucina ;
                    rdfs:range :AreaGeografica ;
                    rdfs:comment "La relazione indica l'appartenenza di una cucina o tipologia di cucina a una specifica area geografica. Questa relazione evidenzia l'associazione tra uno stile culinario e la regione di origine"@it ;
@@ -481,13 +483,9 @@
 
 ###  http://www.semanticweb.org/lucagrandi/ontologies/cibi_tipici/ProdottoLocale
 :ProdottoLocale rdf:type owl:Class ;
-                owl:equivalentClass [ owl:intersectionOf ( :CiboTipico
-                                                           [ rdf:type owl:Restriction ;
-                                                             owl:onProperty :prodottoDaProduttore ;
-                                                             owl:someValuesFrom :Produttore
-                                                           ]
-                                                         ) ;
-                                      rdf:type owl:Class
+                owl:equivalentClass [ rdf:type owl:Restriction ;
+                                      owl:onProperty :prodottoDaProduttore ;
+                                      owl:someValuesFrom :Produttore
                                     ] ;
                 rdfs:subClassOf :CiboTipico ;
                 rdfs:comment "Un Prodotto locale è un cibo tipico realizzato tipicamente da persone o attività agricole di una specifica area geografica"@it ;
@@ -629,6 +627,7 @@ Il latte deriva da piccole aziende agricole con capi nutriti con foraggi quasi t
                                 "Il profumo è delicato ma intenso, con note floreali che sfumano in sentori di frutta secca quali noci e nocciole, tipiche dell'arco alpino, il gusto è da subito pieno, con note di frutta matura e secca, vaniglia e rosa canina o ancora fiori dei pascoli alpini quali il botton d'oro o piccoli frutti selvatici come uva spina e ribes giallo." ,
                                 "L'alimentazione degli animali, in particolare la componente foraggera della razione, influisce sulle caratteristiche del latte ottenuto e, di conseguenza su quelle del formaggio prodotto (ben noti sono, ad esempio, gli aromi trasmessi al latte prima e al formaggio poi dalla specie Ligusticum mutellina, conosciuta comunemente in zona come «erba mottolina»)." ,
                                 "Una masticazione adeguata, unita al riscaldamento in bocca, esalta questi profili gusto-olfattivi permettendo alla pasta, consistente ed elastica, di sciogliersi con gradualità e di far uscire tutta la vasta gamma aromatica del formag­gio, in specie i gusti tendenti allo speziato." ;
+                   :haNome "Formaggio Ossolano" ;
                    :haStoria """Il legame con l’ambiente si manifesta a livello sociale attraverso le contaminazioni etnico/storiche tra le popolazioni residenti e le popolazioni Walser che nei secoli giunsero dalla vicina Svizzera e si ristabilirono nei territori ossolani, tanto da diventare una delle tre minoranze etniche del Piemonte oltre ai Francoprovenzali e ai Valdesi. La popolazione “Walser” abitante di territori montani, aveva acquisito una tecnica casearia dettata anche dalle condizioni climatiche con temperature mai eccessivamente elevate, obbligando l’inserimento nel processo produttivo della fase di semicottura, per permettere un migliore spurgo del siero, limitato in ambienti freddi. I documenti storici che attestano la produzione del formaggio Ossolano sono numerosissimi. Il più antico trovato risale addirittura al 12 luglio 1006. Si tratta di una pergamena che regolamenta una pratica di affitto di alcuni terreni appartenenti alla Pieve di San Vincenzo di Vergante che il Vescovo Pietro concede dalla Cattedra di Novara ad un certo Grimaldo. Il presule richiede all'affittuario la consegna annuale di 100 libbre di formaggio \"di giusta misura secondo la bilancia del luogo\". Molti documenti permettono poi di individuare utilizzi commerciali e legali del formaggio, ad esempio:
 - la possibilità di pagare in formaggio alcune tasse o decime;
 - una curiosa decima, pagata dapprima ai Canonici di Domodossola e poi trasmessa ereditariamente a tutti i Parroci, che prevedeva la consegna agli stessi del formaggio prodotto in un certo giorno dell'anno (per alcuni San Giovanni il 24 Giugno e per altri San Quirico il 16 luglio);
@@ -752,6 +751,7 @@ Tutte le valli ossolane sono rinomate per l'altissima qualità dei loro prodotti
                           :realizzatoTramiteRicetta :ricettaVinoValliOssolanePrunent ;
                           :haCuriosita "Il nome \"Prunent\", di origine latina e deriverebbe dalla radice “pruina” (brina), con chiaro riferimento al periodo della vendemmia (fine Ottobre-Novembre) nel quale i terreni al mattino si presentano ricoperti di brina, oppure dal lemma “prunum” (susino, prugno), connesso al sapore del vino oppure alla tradizione di coltivare la vite insieme ai prugni selvatici presenti ovunque nella zona." ,
                                        "Prodotto su terrazzamenti di muri a secco che si estendono su un terreno con un dislivello di 150 metri, imprigionando tutto il calore del sole e creando un microclima unico." ;
+                          :haNome "Vino delle valli ossolane Prunent" ;
                           :haStoria """Il vitigno ha origini antichissime. È menzionato in un testamento scritto del 19 maggio 1309 da di Dumino di Pello di Trontano che disponeva un lascito annuale di nove staia di vino perpetuo al Convento dei Frati Minori di Domodossola. È specificato che il vino doveva essere tutto prünent e che doveva essere utilizzato solo per la celebrazione della Santa Messa. Con uve di Prunent si produceva un tempo un vino pregiato, da invecchiamento, conosciuto ed apprezzato anche fuori dall'Ossola. Sul finire del 1800, a causa della diffusione della filossera che distrusse buona parte dei vitigni europei e obbligò anche i viticoltori ossolani ad utilizzare barbatelle innestate, le vecchie piante di Prunent vennero nel corso degli anni sostituite con altri vitigni più produttivi ma meno pregiati e, soprattutto, non sempre adatti alle condizioni climatiche della zona. Alcuni ceppi di Prunent centenario e franchi di piede si possono ancora trovare in Ossola, nelle zone di Pello, Trontano, Masera, Montecrestese. La tradizionale forma di allevamento adottata per il prünent è quella a pergola.[1]
 
 Dal 1990 è in attuazione dalle istituzioni e imprese locali un ambizioso progetto di recupero di questo antico vitigno. In particolare l'Associazione Produttori Agricoli Ossolani in collaborazione con aziende agricole locali sono riuscite a rilanciare commercialmente lo storico vitigno locale, facendone un vino di qualità e di struttura, apprezzato dalla critica, che se la gioca alla pari con gli altri grandi nebbioli piemontesi.""" ;
@@ -1216,53 +1216,6 @@ Il latte viene lavorato crudo o previo trattamento termico di pastorizzazione e 
 :ingr rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
 
 [ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
-   rdfs:comment "Se un'area geografica comprende una sotto area, allora la prima comprenderà le tipologie di cucina della sotto area" ;
-   rdfs:label "Tpologie cucina delle sotto aree inclusi nell'area geografica padre" ;
-   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
-   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :AreaGeografica ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :s
-                                                     ] ;
-                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :AreaGeografica ;
-                                                                  <http://www.w3.org/2003/11/swrl#argument1> :sa
-                                                                ] ;
-                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :comprendeAreaGeografica ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument1> :a ;
-                                                                             <http://www.w3.org/2003/11/swrl#argument2> :sa
-                                                                           ] ;
-                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :cucinaAppartieneA ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :c ;
-                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :sa
-                                                                                      ] ;
-                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :Cucina ;
-                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :c
-                                                                                                 ] ;
-                                                                                       rdf:rest rdf:nil
-                                                                                     ]
-                                                                          ]
-                                                               ]
-                                                    ]
-                                         ] ;
-   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
-                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
-                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :cucinaAppartieneA ;
-                                                       <http://www.w3.org/2003/11/swrl#argument1> :c ;
-                                                       <http://www.w3.org/2003/11/swrl#argument2> :a
-                                                     ] ;
-                                           rdf:rest rdf:nil
-                                         ]
- ] .
-
-[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
    rdfs:comment "Se un cibo tipico è compatibile con una dieta allora gli ingredienti utilizzati saranno anch'essi compatibili" ;
    rdfs:label "Ingredienti compatibili con dieta" ;
    rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
@@ -1537,6 +1490,53 @@ Il latte viene lavorato crudo o previo trattamento termico di pastorizzazione e 
                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :tipicoDiCucina ;
                                                        <http://www.w3.org/2003/11/swrl#argument1> :p ;
                                                        <http://www.w3.org/2003/11/swrl#argument2> :c
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment "Se un'area geografica comprende una sotto area, allora la prima comprenderà le tipologie di cucina della sotto area" ;
+   rdfs:label "Tpologie cucina delle sotto aree inclusi nell'area geografica padre" ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#classPredicate> :AreaGeografica ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :s
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#classPredicate> :AreaGeografica ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> :sa
+                                                                ] ;
+                                                      rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                 rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                             <http://www.w3.org/2003/11/swrl#propertyPredicate> :comprendeAreaGeografica ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument1> :a ;
+                                                                             <http://www.w3.org/2003/11/swrl#argument2> :sa
+                                                                           ] ;
+                                                                 rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                            rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                                        <http://www.w3.org/2003/11/swrl#propertyPredicate> :cucinaAppartieneA ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                                                        <http://www.w3.org/2003/11/swrl#argument2> :sa
+                                                                                      ] ;
+                                                                            rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                                                       rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#ClassAtom> ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#classPredicate> :Cucina ;
+                                                                                                   <http://www.w3.org/2003/11/swrl#argument1> :c
+                                                                                                 ] ;
+                                                                                       rdf:rest rdf:nil
+                                                                                     ]
+                                                                          ]
+                                                               ]
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> :cucinaAppartieneA ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> :c ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> :a
                                                      ] ;
                                            rdf:rest rdf:nil
                                          ]

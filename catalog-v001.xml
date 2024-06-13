@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/bag.owl" uri="bag.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/sequence.owl" uri="sequence.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="list.owl"/>
     <uri id="Imports Wizard Entry" name="http://www.ontologydesignpatterns.org/cp/owl/list.owl" uri="file:/Users/lucagrandi/Downloads/list.owl"/>
